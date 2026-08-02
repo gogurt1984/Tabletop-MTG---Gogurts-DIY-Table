@@ -31,8 +31,8 @@ Scryfall traffic from this table through your own free Cloudflare Worker, which:
 
 | File | Purpose |
 |---|---|
-| `Install.zip` / `Install.bat` | **The installer.** Double-click `Install.bat` to install or update the mod. It always fetches the latest version from this GitHub repo. The zip is just a download-friendly wrapper for the same file. |
-| `installer.ps1` | The PowerShell script `Install.bat` runs. You don't need to touch it. |
+| `Install.bat` | **The installer.** Double-click it to install or update the mod. It runs `installer.ps1` from the same folder, which fetches the latest save file from this GitHub repo. |
+| `installer.ps1` | The PowerShell script `Install.bat` runs. Keep it in the same folder as `Install.bat`. You don't need to open it. |
 | `scryfall-proxy-worker.js` | The Cloudflare Worker code. You'll deploy this to your own free Cloudflare account (Steps 1–2). |
 | `2293586471.json` | The TTS save file the installer downloads and patches. Only needed directly if you do a [manual install](#manual-install-without-the-installer). |
 | `2293586471.png` | The mod thumbnail. |
@@ -63,9 +63,15 @@ Scryfall traffic from this table through your own free Cloudflare Worker, which:
 
 ## Step 3 — Run the installer
 
-1. Download [`Install.zip`](https://raw.githubusercontent.com/gogurt1984/Tabletop-MTG---Gogurts-DIY-Table/main/Install.zip) (clicking the link downloads it).
-2. Open the zip and double-click `Install.bat`. (Windows SmartScreen may warn about an unrecognized app — click **More info** → **Run anyway**.)
+1. Download both installer files into the **same folder** (right-click each link → **Save link as…**):
+   - [`Install.bat`](https://raw.githubusercontent.com/gogurt1984/Tabletop-MTG---Gogurts-DIY-Table/main/Install.bat)
+   - [`installer.ps1`](https://raw.githubusercontent.com/gogurt1984/Tabletop-MTG---Gogurts-DIY-Table/main/installer.ps1)
+
+   (Or use the green **Code → Download ZIP** button at the top of the repo to get everything at once.)
+2. Double-click `Install.bat`. (Windows SmartScreen may warn about an unrecognized app — click **More info** → **Run anyway**.)
 3. When prompted, paste your Worker address from Step 2 and press Enter.
+
+> **"Virus detected" / SmartScreen warning?** These installer files are plain text scripts — you can open them in Notepad to read exactly what they do. Antivirus tools sometimes flag *any* script that downloads a file as a precaution (a false positive). The installer only downloads this mod's save file from this GitHub repo and copies it into your Tabletop Simulator folder; it runs no other programs and changes no system settings. If Windows blocks it, choose **More info → Run anyway**, or allow the file in your antivirus.
 
 The installer downloads the latest save file from this repo, patches in your Worker URL, installs it into your TTS Workshop folder, and registers it with Tabletop Simulator — the same way a Steam Workshop subscription would.
 
